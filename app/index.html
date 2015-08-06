@@ -1,15 +1,32 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app='phonecatApp' ng-controller='PhoneListCtrl as list'>
 <head>
   <meta charset="utf-8">
-  <title>My HTML File</title>
+  <title ng-bind-template='Google Phone Gallery: {{ list.query }}'></title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
 </head>
-<body>
 
-  <p>Nothing here {{'yet' + '!'}}</p>
+	<body>
+		<div class='container-fluid'>
+			<div class='col-md-2'>
+				Search: <input ng-model="list.query">
+			</div>
 
-</body>
+			<select ng-model='list.orderProp'>
+				<option value='name'>Alphabetical</option>
+				<option value='-age'>Newest</option>
+			</select>
+
+			<div class='col-md-10'>
+				<ul class='phones'>
+					<li ng-repeat='phone in list.phones | filter:list.query | orderBy:list.orderProp'>
+						<span>{{ phone.name }}</span>
+						<p> {{ phone.snippet }}</p>
+					</li>
+				</ul>
+			</div>
+	</body>
 </html>
