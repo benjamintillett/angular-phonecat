@@ -12,4 +12,6 @@ phonecatApp.controller('PhoneListCtrl',['$http',function($http){
   });
 
   self.orderProp = 'age';
+
+
 }]);
