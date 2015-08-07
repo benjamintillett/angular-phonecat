@@ -3,12 +3,20 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 describe('PhoneCat App', function() {
+
+	it('should redirect index.html to index.html#/phones',function(){
+		browser.get('app/index.html');
+		browser.getCurrentUrl().then(function(url){
+			expect(url.split('#')[1]).toEqual('/phones');
+		});
+	});
+
 	describe('Phone list view', function() {
 
-		beforeEach(function() {
-			browser.get('app/index.html');
+		beforeEach(function(){
+			browser.get('app/index.html#/phones');
 		});
-		
+
 		var phoneList = element.all(by.repeater('phone in list.phones'));
 		var query = element(by.model('list.query'));
 
@@ -23,14 +31,6 @@ describe('PhoneCat App', function() {
 			query.clear();
 			query.sendKeys('motorola');
 			expect(phoneList.count()).toBe(8);
-		});
-
-		it('should display the current query in the title bar',function(){
-			query.clear();
-			expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
-
-			query.sendKeys('nexus');
-			expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);			
 		});
 
 		it('should be possible to control phone order via the drop down select box',function(){
@@ -58,5 +58,56 @@ describe('PhoneCat App', function() {
 			]);
 
 		});
+
+		it('should render phone specific links',function(){
+			var query = element(by.model('list.query'));
+			query.sendKeys('nexus');
+			element.all(by.css('.phones li a')).first().click();
+			browser.getCurrentUrl().then(function(url){
+				expect(url.split('#')[1]).toBe('/phones/nexus-s');
+			});
+		});
+
 	});	
+
+	describe('Phone detail view', function(){
+		beforeEach(function(){
+			browser.get('/app/index.html#phones/nexus-s');
+		});
+
+		it('should display placeholder page with phoneId',function(){
+			expect(element(by.binding('phone.details.name')).getText()).toBe('Nexus S');
+		});
+
+		it('should display 4 thumbnail Images on the Nexus S page',function(){
+			element.all(by.repeater('img in phone.details.images')).then(function(imageElements){
+				expect(imageElements.length).toEqual(4);
+			});
+		});	
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+<div class='container-fluid'>
+	<div class='col-md-2'>
+		Search: <input ng-model="list.query">
+	</div>
+
+	<select ng-model='list.orderProp'>
+		<option value='name'>Alphabetical</option>
+		<option value='age'>Newest</option>
+	</select>
+
+	<div class='col-md-10'>
+		<ul class='phones'>
+			<li ng-repeat='phone in list.phones | filter:list.query | orderBy:list.orderProp' class='thumbnail'>
+				<a href='#/phones/{{phone.id}}' class='thumb'><img ng-src='{{phone.imageUrl}}'></a>
+				<a href='#/phones/{{phone.id}}'>{{phone.name}}</a>
+				<p> {{ phone.snippet }}</p>
+			</li>
+		</ul>
+	</div>
+</div>

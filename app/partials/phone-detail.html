@@ -1,0 +1,113 @@
+<img ng-src="{{phone.details.images[0]}}" class="phone">
+
+<h1>{{phone.details.name}}</h1>
+
+<p>{{phone.details.description}}</p>
+
+<ul class="phone-thumbs">
+  <li ng-repeat="img in phone.details.images">
+    <img ng-src="{{img}}">
+  </li>
+</ul>
+
+<ul class="specs">
+  <li>
+    <span>Availability and Networks</span>
+    <dl>
+      <dt>Availability</dt>
+      <dd ng-repeat="availability in phone.details.availability">{{availability}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Battery</span>
+    <dl>
+      <dt>Type</dt>
+      <dd>{{phone.details.battery.type}}</dd>
+      <dt>Talk Time</dt>
+      <dd>{{phone.details.battery.talkTime}}</dd>
+      <dt>Standby time (max)</dt>
+      <dd>{{phone.details.battery.standbyTime}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Storage and Memory</span>
+    <dl>
+      <dt>RAM</dt>
+      <dd>{{phone.details.storage.ram}}</dd>
+      <dt>Internal Storage</dt>
+      <dd>{{phone.details.storage.flash}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Connectivity</span>
+    <dl>
+      <dt>Network Support</dt>
+      <dd>{{phone.details.connectivity.cell}}</dd>
+      <dt>WiFi</dt>
+      <dd>{{phone.details.connectivity.wifi}}</dd>
+      <dt>Bluetooth</dt>
+      <dd>{{phone.details.connectivity.bluetooth}}</dd>
+      <dt>Infrared</dt>
+      <dd>{{phone.details.connectivity.infrared}}</dd>
+      <dt>GPS</dt>
+      <dd>{{phone.details.connectivity.gps}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Android</span>
+    <dl>
+      <dt>OS Version</dt>
+      <dd>{{phone.details.android.os}}</dd>
+      <dt>UI</dt>
+      <dd>{{phone.details.android.ui}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Size and Weight</span>
+    <dl>
+      <dt>Dimensions</dt>
+      <dd ng-repeat="dim in phone.details.sizeAndWeight.dimensions">{{dim}}</dd>
+      <dt>Weight</dt>
+      <dd>{{phone.details.sizeAndWeight.weight}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Display</span>
+    <dl>
+      <dt>Screen size</dt>
+      <dd>{{phone.details.display.screenSize}}</dd>
+      <dt>Screen resolution</dt>
+      <dd>{{phone.details.display.screenResolution}}</dd>
+      <dt>Touch screen</dt>
+      <dd>{{phone.details.display.touchScreen}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Hardware</span>
+    <dl>
+      <dt>CPU</dt>
+      <dd>{{phone.details.hardware.cpu}}</dd>
+      <dt>USB</dt>
+      <dd>{{phone.details.hardware.usb}}</dd>
+      <dt>Audio / headphone jack</dt>
+      <dd>{{phone.details.hardware.audioJack}}</dd>
+      <dt>FM Radio</dt>
+      <dd>{{phone.details.hardware.fmRadio}}</dd>
+      <dt>Accelerometer</dt>
+      <dd>{{phone.details.hardware.accelerometer}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Camera</span>
+    <dl>
+      <dt>Primary</dt>
+      <dd>{{phone.details.camera.primary}}</dd>
+      <dt>Features</dt>
+      <dd>{{phone.details.camera.features.join(', ')}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Additional Features</span>
+    <dd>{{phone.details.additionalFeatures}}</dd>
+  </li>
+</ul>
