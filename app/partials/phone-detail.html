@@ -1,12 +1,11 @@
-<img ng-src="{{phone.details.images[0]}}" class="phone">
-
+<img ng-src="{{phone.mainImageUrl}}" class="phone">
 <h1>{{phone.details.name}}</h1>
 
 <p>{{phone.details.description}}</p>
 
 <ul class="phone-thumbs">
   <li ng-repeat="img in phone.details.images">
-    <img ng-src="{{img}}">
+    <img ng-src="{{img}}" ng-click='phone.setImage(img)'>
   </li>
 </ul>
 
@@ -50,7 +49,7 @@
       <dt>Infrared</dt>
       <dd>{{phone.details.connectivity.infrared | checkmark }}</dd>
       <dt>GPS</dt>
-      <dd>{{phone.details.connectivity.gps | checkmark }}</dd>
+      <dd>{{phone.details.connectivity.gps | checkmark}}</dd>
     </dl>
   </li>
   <li>
